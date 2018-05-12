@@ -6,14 +6,10 @@ import {RegistrationComponent} from './registration/registration.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuardService} from './auth-guard.service';
 
-const routes: Routes = [
+const Ruts: Routes = [
   {
     path:'',
     component: HomeComponent
-  },
-  {
-    path:'**',
-    redirectTo: ''
   },
   {
     path:'register',
@@ -28,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(Ruts,  { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

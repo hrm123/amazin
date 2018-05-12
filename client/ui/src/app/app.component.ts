@@ -34,6 +34,18 @@ export class AppComponent {
     this.router.navigate(['']);
    }
 
+   navigateTo(url){
+     debugger;
+     console.log('configured routes: ', this.router.config);
+     /*
+     for (var i = 0; i < this.router.config.length; i++) {
+      var routePath:string = this.router.config[i].path;
+      console.log(routePath);
+    }
+    */
+     this.router.navigateByUrl(url);
+   }
+
   search() {}
 
 
