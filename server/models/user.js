@@ -22,8 +22,8 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', function(next){
     var user = this;
-    if(user.isModified('password')) return next();
-    bcrypt.hash(user.password, null, null, function(er, hash){
+    if(! user.isModified('password')) return next();
+    bcrypt.hash(user.password, null, null, function(err, hash){
         if(err) return next(err);
         user.password = hash;
         next();
@@ -31,7 +31,13 @@ UserSchema.pre('save', function(next){
 });
 
 UserSchema.methods.comparePassword = function(pwd){
+    try{
     return bcrypt.compareSync(pwd, this.password);
+    }
+    catch(err){
+        console.log(err);
+        return false;
+    }
 };
 
 UserSchema.methods.gravatar = function(size){
