@@ -51,12 +51,16 @@ export class RegistrationComponent implements OnInit {
           email: this.email,
           password: this.password,
           isSeller: this.isSeller
-        }
-        );
+        });
         if(data['success']){
           localStorage.setItem('token', data['token']);
-          this.data.success('Registration successfull.');
+          // this.data.success('Registration successfull.');
           await this.data.getProfile();
+          this.router.navigate(['prrofile/address'])
+          .then(() => {
+            this.data.success('Registration successfull! Please enter your shipping address below.');
+          })
+          .catch(err => this.data.error(err));
         } else {
           this.data.error(data['message']);
         }

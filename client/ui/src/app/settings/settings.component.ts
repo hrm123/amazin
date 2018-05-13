@@ -25,7 +25,7 @@ export class SettingsComponent implements OnInit {
 
     }
     catch(err){
-      this.data.error(err);
+      this.data.error(err['message']);
     }
   }
 
@@ -58,7 +58,7 @@ export class SettingsComponent implements OnInit {
     this.btnDisabled = true;
     try {
       if(this.validate(this.currentSettings)){
-        const data = await this.rest.post('http://localhost:3030/api/accoutns/profile',{
+        const data = await this.rest.post('http://localhost:3030/api/accounts/profile',{
           name: this.currentSettings['name'],
           email: this.currentSettings['email'],
           password: this.currentSettings['password'],
@@ -66,7 +66,7 @@ export class SettingsComponent implements OnInit {
         });
 
         data['success']
-        ? (this.data.getProfile(), this.data.success(data['message']))
+        ? (await this.data.getProfile(), this.data.success(data['message']))
         : this.data.error(data['message'])
       }
     }

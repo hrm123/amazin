@@ -36,7 +36,8 @@ export class DataService {
   async getProfile(){
     try{
       if(localStorage.getItem('token')) {
-        const data = await this.rest.get('htttp://localhost:3030/api/accounts/profile');
+        const data = await this.rest.get('http://localhost:3030/api/accounts/profile');
+        console.log('getprofile', data);
         this.user = data['user'];
       }
 
