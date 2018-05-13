@@ -33,14 +33,17 @@ export class AddressComponent implements OnInit {
   }
 
   validate(addr){
+    return true;
 
   }
 
   async update() {
     this.btnDisabled = true;
     try {
+      debugger;
       if(this.validate(this.currentAddress)){
-        const res = await this.rest.post('http://localhost:3030/api/accounts/address',this.currentAddress);
+        const res = await this.rest.post('http://localhost:3030/api/accounts/address',
+        this.currentAddress);
 
         res['success']
         ? (this.data.success(res['message']), await this.data.getProfile())
