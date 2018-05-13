@@ -26,9 +26,11 @@ app.use(cors()); // any API call from UI will not have domain issues
 const userRoutes = require('./routes/account');
 app.use('/api/accounts', userRoutes);
 
+const sellerRoutes = require('./routes/seller');
+app.use('/api/seller', sellerRoutes);
+
 const mainRoutes = require('./routes/main');
 app.use('/api', mainRoutes);
-
 
 app.post('/signup1', (req, res) => {
     console.log('signup1');
