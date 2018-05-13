@@ -1,0 +1,33 @@
+<section id="categories">
+    <div class="container p-5">
+      <h4 class="display-4">categories</h4>
+      <hr>
+      <app-message></app-message>
+      <div *ngIf="!categories" class="m-auto">
+        <h1 class="text-center display-3 mt-5">
+          <i class="fa fa-spinner fa-spin"></i>
+        </h1>
+      </div>
+      <div *ngIf="categories" class="list-group">
+        <a (onclick)="navigateTo('/categories/category._id')" *ngFor="let category of categories" 
+        class="list-group-item list-group-item-action">{{category.name}}</a>
+      </div>
+      <hr style="margin-top: 15rem;">
+      <div class="card bg-light mt-5">
+        <div class="card-body">
+          <h4 class="card-title">Add new category</h4>
+          <hr>
+          <div class="form">
+            <div class="form-group">
+              <label for="newCategory">Category</label>
+              <input type="text" name="newCategory" class="form-control"
+                [(ngModel)]="newCategory"
+              >
+            </div>
+            <button type="button" class="btn btn-info" (click)="addCategory()">Add Category</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>

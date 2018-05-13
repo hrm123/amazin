@@ -7,6 +7,9 @@ import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SettingsComponent} from './settings/settings.component';
 import {AddressComponent} from './address/address.component';
+import {CategoriesComponent} from './categories/categories.component';
+import {PostProductComponent} from './post-product/post-product.component';
+import {MyProductsComponent} from './my-products/my-products.component';
 import {AuthGuardService} from './auth-guard.service';
 
 const Ruts: Routes = [
@@ -30,13 +33,27 @@ const Ruts: Routes = [
     canActivate: [AuthGuardService]
   },
   {
+    path:'categories',
+    component: CategoriesComponent
+  },
+  {
     path:'profile/settings',
     component: SettingsComponent,
     canActivate: [AuthGuardService]
   },
   {
+    path:'profile/postproduct',
+    component: PostProductComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
     path:'profile/address',
     component: AddressComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path:'profile/myproducts',
+    component: MyProductsComponent,
     canActivate: [AuthGuardService]
   },
   {
@@ -46,7 +63,7 @@ const Ruts: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(Ruts,  { enableTracing: true })],
+  imports: [RouterModule.forRoot(Ruts)], //  { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
