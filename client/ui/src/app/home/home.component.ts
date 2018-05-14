@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {RestApiService} from '../restapi.service';
+import {DataService} from '../data.service';
+import {Router, ActivatedRoute} from '@angular/router'
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  products: any;
 
-  ngOnInit() {
+  constructor(private data: DataService, private rest: RestApiService, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
+
+
+  async ngOnInit() {
+    try {
+      const data = await this.rest.get(
+        'http://localhost:3030/api/products'
+      );
+      data['success']
+      ? (this.products = data['products'])
+      : this.data.error('Could not fetch products.');
+    }
+    catch(err){
+      this.data.error(err['message']);
+    }
+  }
+
+  navigateTo(url){
+    debugger;
+    this.router.navigateByUrl(url);
   }
 
 }
