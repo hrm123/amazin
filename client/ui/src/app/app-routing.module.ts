@@ -10,6 +10,8 @@ import {AddressComponent} from './address/address.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {PostProductComponent} from './post-product/post-product.component';
 import {MyProductsComponent} from './my-products/my-products.component';
+import {ProductComponent} from './product/product.component';
+import {CategoryComponent} from './category/category.component';
 import {AuthGuardService} from './auth-guard.service';
 
 const Ruts: Routes = [
@@ -37,6 +39,10 @@ const Ruts: Routes = [
     component: CategoriesComponent
   },
   {
+    path:'categories/:id',
+    component: CategoryComponent
+  },
+  {
     path:'profile/settings',
     component: SettingsComponent,
     canActivate: [AuthGuardService]
@@ -45,6 +51,10 @@ const Ruts: Routes = [
     path:'profile/postproduct',
     component: PostProductComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path:'product/:id',
+    component: ProductComponent
   },
   {
     path:'profile/address',

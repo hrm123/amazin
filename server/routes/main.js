@@ -223,7 +223,7 @@ router.get('/product/:id',(req, res, next)=> {
             });
         } else {
             res.json({
-                success: false,
+                success: true,
                 message: 'Product is found',
                 product: product
             });           
