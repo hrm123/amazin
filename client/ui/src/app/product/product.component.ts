@@ -11,14 +11,24 @@ import {Router, ActivatedRoute} from '@angular/router'
 export class ProductComponent implements OnInit {
 
   product: any;
+  JSON : any;
+
+  myReview: any = {
+    title: '',
+    desciption: '',
+    rating: 0
+  };
+
+  btnDisabled = false;
 
   constructor(private data: DataService, private rest: RestApiService, private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) {
+      this.JSON = JSON;
+     }
 
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(res => {
-      debugger;
       let id = res['id'];
       this.rest.get(`http://localhost:3030/api/product/${id}`)
       .then(data => {
@@ -28,6 +38,25 @@ export class ProductComponent implements OnInit {
       })
       .catch( error => this.data.error(error['message']));
     })
+  }
+
+  async postReview() {
+    this.btnDisabled = true;
+    try {
+      const data = this.rest.post(
+        'http://localhost:3030/api/review',
+        Object.assign({}, {
+          productId : this.product._id
+        }, this.myReview)
+      );
+      data['success']
+        ? this.data.success(data['message'])
+      : this.data.error(data['message']);
+    }
+    catch(e) {
+      this.data.error(e['message']);
+    }
+    this.btnDisabled = false;
   }
 
 }

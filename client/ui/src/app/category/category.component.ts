@@ -54,7 +54,6 @@ export class CategoryComponent implements OnInit {
   }
 
   navigateTo(url){
-    debugger;
     this.router.navigateByUrl(url);
   }
 

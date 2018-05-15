@@ -61,3 +61,21 @@ h5 {
       margin-right: auto;
       margin-bottom: auto;
   }
+
+  .star {
+      position: relative;
+      display: inline-block;
+      font-size: 2 rem;
+      color: #d3d3d3;
+  }
+
+  .full {
+    color: gold;
+  }
+
+  .half {
+    position: absolute;
+    display: inlint-block;
+    overflow: hidden;
+    color: gold;
+  }

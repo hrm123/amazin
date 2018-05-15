@@ -4,8 +4,10 @@ const async = require('async');
 
 const Category = require('../models/category');
 const Product  = require('../models/product');
+const Review  = require('../models/review');
 const config = require('../config');
 const checkJWT = require('../middlewares/check-jwt');
+// const deepPop = require('mongoose-deep-populate')(mongoose);
 
 router.get('/test', (req,res, next) =>{
     function n1(callback){
@@ -151,6 +153,7 @@ router.get('/categories/:id', (req, res, next) => {
             .limit(perPage)
             .populate('category')
             .populate('owner')
+            .populate('review')
             .exec((err, products)=>{
                 if(err) return next(err);
                 callback(err, products);
@@ -215,6 +218,7 @@ router.get('/product/:id',(req, res, next)=> {
     Product.findById({_id: req.params.id})
     .populate('category')
     .populate('owner')
+    .deepPopulate('reviews.owner')
     .exec((err, product)=> {
         if(err) {
             res.json({
@@ -230,6 +234,45 @@ router.get('/product/:id',(req, res, next)=> {
         }
     });
 
+});
+
+router.post('/review', checkJWT, (req, res, next) => {
+    console.log(req.body);
+    try{
+    async.waterfall([
+        function(callback) {
+            Product.findOne({_id : req.body.productId}, (err, product) => {
+                if(product){
+                    callback(err, product);
+                } else {
+                    console.log(err);
+                }
+            });
+        },
+        function(product) {
+            let review = new Review();
+            review.owner = req.decoded.user._id;
+            if(req.body.title) review.title = req.body.title;
+            if(req.body.description) review.title = req.body.description;
+            review.rating = req.body.rating;
+            product.reviews.push(review._id);
+            product.save();
+            review.save();
+            res.json({
+                success: true,
+                message: 'Successfully added the review'
+            });
+
+        }
+    ]);
+}
+catch(err){
+    console.log(err);
+    res.json({
+        success: false,
+        message: 'Server error.'
+    })
+}
 });
 
 module.exports = router;
