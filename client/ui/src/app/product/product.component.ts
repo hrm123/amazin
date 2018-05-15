@@ -41,9 +41,10 @@ export class ProductComponent implements OnInit {
   }
 
   async postReview() {
+    debugger;
     this.btnDisabled = true;
     try {
-      const data = this.rest.post(
+      const data = await this.rest.post(
         'http://localhost:3030/api/review',
         Object.assign({}, {
           productId : this.product._id

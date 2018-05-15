@@ -35,7 +35,6 @@ export class AppComponent {
    }
 
    navigateTo(url){
-     debugger;
      console.log('configured routes: ', this.router.config);
      /*
      for (var i = 0; i < this.router.config.length; i++) {
