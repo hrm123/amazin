@@ -29,6 +29,10 @@ app.use('/api/accounts', userRoutes);
 const sellerRoutes = require('./routes/seller');
 app.use('/api/seller', sellerRoutes);
 
+const productSearchRoutes = require('./routes/product-search');
+app.use('/api/search', productSearchRoutes);
+
+
 const mainRoutes = require('./routes/main');
 app.use('/api', mainRoutes);
 

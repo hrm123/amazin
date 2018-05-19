@@ -12,6 +12,7 @@ import {PostProductComponent} from './post-product/post-product.component';
 import {MyProductsComponent} from './my-products/my-products.component';
 import {ProductComponent} from './product/product.component';
 import {CategoryComponent} from './category/category.component';
+import {SearchComponent} from './search/search.component';
 import {AuthGuardService} from './auth-guard.service';
 
 const Ruts: Routes = [
@@ -23,6 +24,10 @@ const Ruts: Routes = [
     path:'register',
     component: RegistrationComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path:'search',
+    component: SearchComponent
   },
   {
     path:'login',

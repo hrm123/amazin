@@ -45,7 +45,9 @@ export class AppComponent {
      this.router.navigateByUrl(url);
    }
 
-  search() {}
+  search() {
+    this.router.navigateByUrl(`/search?query=${this.searchTerm}`);
+  }
 
 
 }
