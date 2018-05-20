@@ -8,7 +8,7 @@ import { ChatService } from '../chat.service';
 })
 export class ChatComponent implements OnInit {
   message : string;
-  messages : string [] = [];
+  messages : any [] = [];
 
   constructor(private chatService: ChatService) {
 
@@ -18,15 +18,14 @@ export class ChatComponent implements OnInit {
     this.chatService
       .getMessages()
       .subscribe((message: string) => {
-        console.log('got msg - ' + message);
+        // console.log('got msg - ' + message);
         
         this.messages.push(message);
-        console.log(this.messages);
       });
   }
 
   sendMsg(){
-    this.chatService.sendMessage(this.message);
+    this.chatService.sendMessage({ message: this.message, name: 'you'});
     this.message = '';
   }
 

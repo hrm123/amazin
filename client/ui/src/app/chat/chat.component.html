@@ -1,11 +1,39 @@
 <section id="chat">
-<div class="row mt-5">
-    <div class="card-body">
-    <div *ngFor="let msg of messages">
-        {{msg}}
-      </div>
-    <input [(ngModel)]="message" (keyup)="$event.keycode === 13 && sendMsg()" />
-    <button (click)="sendMsg()">Send</button>
+    <div class="container p-5">
+    <h1 class="display-4">Customer support</h1>
+    <hr>
+    <div class="row mt-5">
+      <div class="wrapper">
+        <nav id="nav" class="nav">
+            <div class="default-nav">
+              <div class="main-nav">
+                <div class="toggle">
+                  <div class="main-nav-item">
+                    <a href="#" class="main-nav-item-link">You</a>
+                  </div>
+                  <div class="options">
+    
+                  </div>
+                </div>
+              </div>
+              <div class="inner" id="inner">
+                <div class="content" id="content" >
+                  <div class="message-wrapper them" *ngFor="let msg of messages">
+                    <div class="circle-wrapper animated bounceIn">{{msg.name}}
+                    </div>
+                    <div class="text-wrapper animated fadeIn">{{msg.message}}
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="bottom" id="bottom">
+                <input name="" id="input"   [(ngModel)]="message" cols="30" rows="10" class="input" />
+                <div class="send" id="send" (click)="sendMsg()"></div>
+              </div>
+            </div>
+          </nav>
+        </div>
+    </div>
+    
   </div>
-</div>
 </section>

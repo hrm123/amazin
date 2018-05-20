@@ -1,0 +1,13 @@
+<section id="chat">
+<div class="row mt-5">
+    <div class="card" *ngFor="let msg of messages">
+      <div class="card-body">
+        <p class="card-text">{{msg}}</p>
+      </div>
+    </div>
+      
+    <input [(ngModel)]="message" (keyup)="$event.keycode === 13 && sendMsg()" />
+    <button (click)="sendMsg()">Send</button>
+
+</div>
+</section>
