@@ -11,6 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { RestApiService } from './restapi.service';
 import { DataService } from './data.service';
+import { ChatService } from './chat.service';
 import { AuthGuardService } from './auth-guard.service';
 import { MessageComponent } from './message/message.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -25,6 +26,7 @@ import { MyProductsComponent } from './my-products/my-products.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { SearchComponent } from './search/search.component';
     MyProductsComponent,
     CategoryComponent,
     ProductComponent,
-    SearchComponent
+    SearchComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ import { SearchComponent } from './search/search.component';
     HttpClientModule,
     RouterModule
   ],
-  providers: [RestApiService, DataService, AuthGuardService],
+  providers: [RestApiService, DataService, AuthGuardService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,6 +7,19 @@ const router = require('express').Router();
 
 const config = require('./config');
 const app = express();
+let http = require('http');
+let server = http.Server(app);
+
+let socketIO = require('socket.io');
+let io = socketIO(server);
+
+io.on('connection', (socket) => {
+    console.log('user connected');
+    socket.on('new-message', (message) => {
+      io.emit('new-message', message);
+      });
+    
+});
 
 mongoose.connect(config.database, (err) => {
     if(err){
@@ -42,13 +55,14 @@ app.post('/signup1', (req, res) => {
     res.send('POST request to the homepage')
 });
 
+server.listen(3031, () => {
+  console.log(`socket started on port: 3031`);
+});
 
 app.get('/', (req,res,next) => {
     console.log(req.route);
     
 });
-
-
 
 app.listen(config.port, (err) => {
     console.log('Magic happens on port awesome ' + config.port);

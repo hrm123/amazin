@@ -40,6 +40,10 @@
                  class="dropdown-item">
                   <i class="fa fa-group" aria-hidden="true"></i> Register
                 </a>
+                <a *ngIf="token" (click)="closeDropdown(dropdown);collapse();navigateTo('/chat')" 
+                 class="dropdown-item">
+                  <i class="fa fa-comments" aria-hidden="true"></i> Chat
+                </a>
               </div>
             </li>
             <li class="nav-item ml-0 ml-md-2">

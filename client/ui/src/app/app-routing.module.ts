@@ -14,6 +14,7 @@ import {ProductComponent} from './product/product.component';
 import {CategoryComponent} from './category/category.component';
 import {SearchComponent} from './search/search.component';
 import {AuthGuardService} from './auth-guard.service';
+import { ChatComponent } from './chat/chat.component';
 
 const Ruts: Routes = [
   {
@@ -28,6 +29,10 @@ const Ruts: Routes = [
   {
     path:'search',
     component: SearchComponent
+  },
+  {
+    path:'chat',
+    component: ChatComponent
   },
   {
     path:'login',
